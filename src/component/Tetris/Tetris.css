@@ -1,0 +1,27 @@
+.tetris-warp {
+  width: 100%;
+  text-align: center;
+}
+.tetris-warp ul {
+  display: inline-block;
+  font-size: 0;
+  padding-left: 0;
+}
+.tetris-warp li {
+  list-style: none;
+}
+.tetris-box li{
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  margin: 1px;
+  text-align: center;
+  font-size: 12px;
+}
+.tetris-normal {
+  background: #eee;
+}
+.tetris-black {
+  background: #000;
+}
