@@ -23,13 +23,13 @@ class Tetris extends Component {
   // 清空俄罗斯方块
   hideTetris() {
     let _tetrisArray = this.state.tetrisArray;
-    this.state.shapeArray.map((shape, i) => {
-      shape.map((item, j) => {
+    this.state.shapeArray.forEach((shape, i) => {
+      shape.forEach((item, j) => {
         if (item) {
           _tetrisArray[this.state.py + i][this.state.px + j].active = 0;
         }
-      })
-    })
+      });
+    });
     this.setState({
       tetrisArray: _tetrisArray
     });
@@ -37,16 +37,16 @@ class Tetris extends Component {
   // 显示俄罗斯方块
   showTetris() {
     let _tetrisArray = this.state.tetrisArray;
-    this.state.shapeArray.map((shape, i) => {
-      shape.map((item, j) => {
+    this.state.shapeArray.forEach((shape, i) => {
+      shape.forEach((item, j) => {
         if (item) {
           _tetrisArray[this.state.py + i][this.state.px + j].active = 1;
-          this.setState({
-            tetrisArray: _tetrisArray
-          });
         }
-      })
-    })
+      });
+    });
+    this.setState({
+      tetrisArray: _tetrisArray
+    });
   }
   // 删除某行
   delete(line) {
@@ -94,17 +94,17 @@ class Tetris extends Component {
   // 固定方块
   fix() {
     let _tetrisArray = this.state.tetrisArray;
-    this.state.shapeArray.map((shape, i) => {
-      shape.map((item, j) => {
+    this.state.shapeArray.forEach((shape, i) => {
+      shape.forEach((item, j) => {
         if (item) {
           _tetrisArray[this.state.py + i][this.state.px + j].static = 1;
           _tetrisArray[this.state.py + i][this.state.px + j].active = 0;
-          this.setState({
-            tetrisArray: _tetrisArray
-          });
         }
-      })
-    })
+      });
+    });
+    this.setState({
+      tetrisArray: _tetrisArray
+    });
     this.preDelete();
   }
   // 移动方块
@@ -147,11 +147,11 @@ class Tetris extends Component {
       }
       _shapeArray.push(tempArray);
     }
-    this.state.shapeArray.map((shape, i) => {
-      shape.map((item, j) => {
+    this.state.shapeArray.forEach((shape, i) => {
+      shape.forEach((item, j) => {
         _shapeArray[this.state.shapeArray[0].length - 1 - j][i] = item;
-      })
-    })
+      });
+    });
     if (this.check(this.state.px, this.state.py, _shapeArray)) {
       this.hideTetris();
       this.setState({
@@ -199,7 +199,7 @@ class Tetris extends Component {
               <ul className="tetris-box">
               {
                 tetris.map((item, j) =>
-                  <li key={i + j} className={item.static || item.active ? 'tetris-black' : 'tetris-normal'}></li>
+                  <li key={`${i}-${j}`} className={item.static || item.active ? 'tetris-black' : 'tetris-normal'}></li>
                 )
               }
               </ul>
